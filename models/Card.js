@@ -10,6 +10,10 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  isBookmarked: {
+    type: Boolean,
+    default: false
+  },
   tags: [
     {
       type: String

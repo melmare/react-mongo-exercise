@@ -12,6 +12,16 @@ export function postCard(newCard) {
   }).then(res => res.json());
 }
 
+export function patchCard(data, id) {
+  return fetch('/cards/' + id, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ data })
+  }).then(res => res.json());
+}
+
 export function getLocal(name) {
   try {
     return JSON.parse(localStorage.getItem(name));
