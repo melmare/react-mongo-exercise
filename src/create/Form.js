@@ -10,7 +10,6 @@ export default class Form extends Component {
       .split(',')
       .map(value => value.trim())
       .filter(value => Boolean(value));
-    console.log(this.tags);
     const newCard = { title, description, tags };
     this.props.onSubmit(newCard);
   };
