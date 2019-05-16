@@ -3,18 +3,15 @@ import Card from './Card';
 import styled from 'styled-components';
 import Headline from '../components/Headline';
 
-const CardListCointainer = styled.ul``;
+const CardListCointainer = styled.ul`
+  padding-top: 50px;
+`;
 
-export default function CardList(props) {
-  const { cards, onToggleBookmark } = props;
+export default function CardList({ cards, onToggleBookmark }) {
   return (
     <CardListCointainer>
       {cards.map(card => (
-        <Card
-          key={card._id}
-          card={card}
-          onToggleBookmark={() => onToggleBookmark(card)}
-        />
+        <Card onToggleBookmark={() => onToggleBookmark(card)} {...card} />
       ))}
     </CardListCointainer>
   );

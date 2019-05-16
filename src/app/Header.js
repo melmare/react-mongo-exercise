@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 const Navigation = styled.nav`
   background: skyblue;
-  grid-area: 'Navigation';
 `;
 
 export function Header() {

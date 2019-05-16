@@ -13,17 +13,7 @@ import { Header } from './Header';
 import GlobalStyles from '../components/GlobalStyles';
 import styled from 'styled-components';
 
-const Grid = styled.div`
-  display: grid;
-  height: 100vh;
-  grid-template-rows: 100px 60px 1fr;
-  grid-row-gap: 10px;
-
-  grid-template-areas:
-    'Navigation'
-    'Headline'
-    'Content';
-`;
+const Grid = styled.div``;
 
 const Main = styled.main``;
 
@@ -31,18 +21,6 @@ export default class App extends Component {
   state = {
     cards: getLocal('cards') || []
   };
-
-  componentDidMount() {
-    getCardList()
-      .then(data => this.setState({ cards: data }))
-      .catch(error => console.log(error));
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.cards !== this.state.cards) {
-      setLocal('cards', this.state.cards);
-    }
-  }
 
   createCard = (newCard, history) => {
     postCard(newCard)
@@ -67,6 +45,17 @@ export default class App extends Component {
     });
   };
 
+  componentDidMount() {
+    getCardList()
+      .then(data => this.setState({ cards: data }))
+      .catch(error => console.log(error));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.cards !== this.state.cards) {
+      setLocal('cards', this.state.cards);
+    }
+  }
   render() {
     const { cards } = this.state;
 

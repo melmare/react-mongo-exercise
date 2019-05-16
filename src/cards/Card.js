@@ -1,33 +1,61 @@
 import React from 'react';
 import { Tag } from './Tag';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const CardTitle = styled.h2``;
 const CardDescription = styled.p``;
 const TagContainer = styled.ul``;
 const BookmarkButton = styled.button``;
 const CardContainer = styled.li``;
-export default function Card(props) {
-  const { card, onToggleBookmark } = props;
 
+export default function Card({
+  title,
+  description,
+  tags,
+  isBookmarked,
+  onToggleBookmark
+}) {
   return (
     <CardContainer>
-      <CardTitle>{card.title}</CardTitle>
-      <CardDescription> {card.description}</CardDescription>
+      <CardTitle>{title}</CardTitle>
+      <CardDescription> {description}</CardDescription>
       <TagContainer>
-        {card.tags.map(tag => (
-          <Tag key={tag} tag={tag} />
-        ))}
+        {tags && tags.map(tag => <Tag key={tag} tag={tag} />)}
       </TagContainer>
       <BookmarkButton onClick={onToggleBookmark}>
-        {card.isBookmarked ? 'Bookmarked' : 'Bookmark'}
+        {isBookmarked ? 'Bookmarked' : 'Bookmark'}
       </BookmarkButton>
     </CardContainer>
   );
 }
 
+Card.propType = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  tags: PropTypes.array,
+  isBookmarked: PropTypes.bool
+};
+
 //    <p>{{ bookmarked } ? 'Bookmarked' : 'Bookmark'}</p>
-/*function patchCard(card) {
+/*
+
+
+
+
+Card.defaultProps = {
+  title: 'Steinalte',
+  description: 'Fische',
+  tags: ['wirklich', 'neue', 'fische'],
+  isBookmarked: false
+};
+
+
+
+
+
+
+function patchCard(card) {
     const {id} = req.params
     return fetch('/cards/:id'. {
       method: 'PATCH',

@@ -3,9 +3,7 @@ import Form from './Form';
 import Headline from '../components/Headline';
 import styled from 'styled-components';
 
-const CreatePageContainer = styled.div`
-  grid-area: Content;
-`;
+const CreatePageContainer = styled.div``;
 export function CreatePage(props) {
   return (
     <CreatePageContainer>
