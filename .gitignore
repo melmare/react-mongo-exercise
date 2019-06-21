@@ -3,7 +3,7 @@
 # custom
 .cache
 .vscode
-
+.docz
 # dependencies
 /node_modules
 /.pnp

@@ -22,29 +22,6 @@ export default class App extends Component {
     cards: getLocal('cards') || []
   };
 
-  createCard = (newCard, history) => {
-    postCard(newCard)
-      .then(newCard => {
-        this.setState({ cards: [newCard, ...this.state.cards] });
-        history.push('/');
-      })
-      .catch(error => console.log(error));
-  };
-
-  onToggleBookmark = card => {
-    patchCard({ isBookmarked: !card.isBookmarked }, card._id)
-      .then(this.updateCardInState)
-      .catch(err => console.log(err));
-  };
-
-  updateCardInState = changedCard => {
-    const { cards } = this.state;
-    const index = cards.findIndex(card => card._id === changedCard._id);
-    this.setState({
-      cards: [...cards.slice(0, index), changedCard, ...cards.slice(index + 1)]
-    });
-  };
-
   componentDidMount() {
     getCardList()
       .then(data => this.setState({ cards: data }))
@@ -56,6 +33,30 @@ export default class App extends Component {
       setLocal('cards', this.state.cards);
     }
   }
+
+  createCard = (newCard, history) => {
+    postCard(newCard)
+      .then(newCard => {
+        this.setState({ cards: [newCard, ...this.state.cards] });
+        history.push('/');
+      })
+      .catch(error => console.log(error));
+  };
+
+  updateCardInState = changedCard => {
+    const { cards } = this.state;
+    const index = cards.findIndex(card => card._id === changedCard._id);
+    this.setState({
+      cards: [...cards.slice(0, index), changedCard, ...cards.slice(index + 1)]
+    });
+  };
+
+  onToggleBookmark = card => {
+    patchCard({ isBookmarked: !card.isBookmarked }, card._id)
+      .then(this.updateCardInState)
+      .catch(err => console.log(err));
+  };
+
   render() {
     const { cards } = this.state;
 

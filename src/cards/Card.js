@@ -3,11 +3,21 @@ import { Tag } from './Tag';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+const CardContainer = styled.li`
+  list-style: none;
+  border: 3px solid;
+  margin-bottom: 20px;
+  padding: 10px;
+`;
 const CardTitle = styled.h2``;
 const CardDescription = styled.p``;
-const TagContainer = styled.ul``;
+
 const BookmarkButton = styled.button``;
-const CardContainer = styled.li``;
+const TagContainer = styled.ul`
+  list-style: none;
+  display: flex;
+  padding-left: 0px;
+`;
 
 export default function Card({
   title,
@@ -31,17 +41,11 @@ export default function Card({
 }
 
 Card.propType = {
-  title: PropTypes.string,
-  description: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   tags: PropTypes.array,
-  isBookmarked: PropTypes.bool
+  isBookmarked: PropTypes.bool.isRequired
 };
-
-//    <p>{{ bookmarked } ? 'Bookmarked' : 'Bookmark'}</p>
-/*
-
-
-
 
 Card.defaultProps = {
   title: 'Steinalte',
@@ -49,27 +53,3 @@ Card.defaultProps = {
   tags: ['wirklich', 'neue', 'fische'],
   isBookmarked: false
 };
-
-
-
-
-
-
-function patchCard(card) {
-    const {id} = req.params
-    return fetch('/cards/:id'. {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(card.bookmarked)
-    }).then(res => res.json())
-  }
-  {card.tags.map(tag => (
-          <Tag key={tag} tag={tag} />
-        ))}
-  
-  
-  
-  
-  */
